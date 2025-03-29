@@ -1,0 +1,106 @@
+<template>
+    <div class="center">
+      <h1>欢迎使用选课系统</h1>
+      <h2>请选择功能</h2>
+      
+      <div class="tabs">
+        <!-- 点了登录就会把login赋给activeTab -->
+        <button 
+          class="tab-button" 
+          :class="{ active: activeTab === 'login' }"
+          @click="activeTab = 'login'"  
+        >
+          登录
+        </button>
+  
+        <!-- 点了注册就会把register赋给activeTab -->
+        <button 
+          class="tab-button" 
+          :class="{ active: activeTab === 'register' }"
+          @click="activeTab = 'register'" 
+        >
+          注册
+        </button>
+      </div>
+  
+      <!-- 登录表单，如果activeTab === 'login'则显示 -->
+      <div v-if="activeTab === 'login'" class="tab-content">
+        <h2>登录</h2>
+        <input type="text" placeholder="手机号">
+        <input type="password" placeholder="密码">
+      </div>
+  
+      <!-- 注册表单，如果不是登录那就是注册 -->
+      <div v-else class="tab-content">
+        <h2>注册</h2>
+        <input type="text" placeholder="姓名">
+        <input type="email" placeholder="手机号">
+        <input type="password" placeholder="密码">
+      </div>
+  
+      <div class="tab-content" style="color: black; height: 200px;">
+        <label for="radio" style="font-size: 40px;">身份选择</label>
+        <br><br>
+        <div>
+          <input type="radio" name="gender" id="student">
+          <label for="student" style="font-size: 20px;">学生</label>
+          <input type="radio" name="gender" id="teacher">
+          <label for="teacher" style="font-size: 20px;">老师</label>
+        </div>
+      </div>
+  
+  
+    </div>
+  
+  </template>
+  
+  <script setup>
+  import { ref } from 'vue'; 
+  const activeTab = ref('login'); //默认直接登录
+  </script>
+  
+  <style scoped>
+  .center {
+    text-align: center;
+    margin: auto;
+    width: 1000px;
+    background-color: aqua;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 10px;
+    right: 10px;
+  }
+  
+  h1, h2 {
+    color: black;
+    text-align: center;
+    
+  }
+  
+  .tab-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: #f0f0f0;
+    margin: 100px;
+  }
+  
+  .tab-button.active {
+    background: #4CAF50;
+    color: white;
+  }
+  
+  .tab-content {
+    padding: 20px;
+    border: 1px solid #ddd;
+  }
+  
+      input {
+    width: 300px;     
+    height: 40px;     
+    padding: 8px 12px; 
+    font-size: 16px;  
+    margin: 5px 0;    
+  }
+  </style>
